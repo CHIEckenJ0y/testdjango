@@ -1,0 +1,136 @@
+{% extends 'pages/dashboard.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+  .button-link1 {
+  width: 200px;
+  padding: 7px;
+  cursor: pointer;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid #0d6efd;
+  float: right;
+  color: #000000;
+}
+.button-link1:hover{
+  background: #0d6efd;
+  color: #fff;
+  transition: 0.5s;
+}
+.edit-details {
+width: 100%;
+padding: 7px;
+cursor: pointer;
+border-radius: 10px;
+background: transparent;
+color: #000000;
+}
+.edit-details:hover{
+background: #0d6efd;
+color: #fff;
+transition: 0.5s;
+}
+.delete-details {
+width: 100%;
+padding: 7px;
+cursor: pointer;
+border-radius: 10px;
+background: transparent;
+color: #000000;
+}
+.delete-details:hover{
+background: #BF3131;
+color: #fff;
+transition: 0.5s;
+}
+table .button_red{
+border: 1px solid #BF3131;
+
+}
+table .button_red:hover{
+background: #BF3131;
+}
+</style>
+<section class="attendance">
+    <div class="attendance-list">
+      <h1>List of Pre-enrolled student</h1>
+      <button style="float: right;"><a class="button-link1" href="{% url 'add_student' %}">Add student</a></button>
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Profile Picture</th>
+            <th>Full name</th>
+            <th>Age</th>
+            <th>Date of birth</th>
+            <th>Email</th>
+            <!--<th>Details</th>-->
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for list_pre_enrolled in student %}
+        
+            <tr>
+                <td>
+                    {% if list_pre_enrolled.photo %}
+                        <img src="{{ list_pre_enrolled.photo.url }}" alt="{{ list_pre_enrolled.last_name }} Photo" style="width: 50px; height: 50px;">
+                    {% else %}
+                        No Photo Available
+                    {% endif %}
+                </td>
+              <td>{{ list_pre_enrolled.first_name }} {{ list_pre_enrolled.middle_name }} {{ list_pre_enrolled.last_name }}</td>
+              <td>{{ list_pre_enrolled.Age }}</td>
+              <td>{{ list_pre_enrolled.date_of_birth }}</td>
+              <td>{{ list_pre_enrolled.email}}</td>
+             <!-- <td>
+                <button class="view-details" data-name="{{ list_instructor.name }}" data-department="{{ list_instructor.department }}" data-email="{{ list_instructor.email }}">View</button>
+              </td>-->
+              <td>
+                <button class="view-details"><a href="{% url 'edit_pre_enrolled' list_pre_enrolled.id %}" class="edit-details">Edit</a></button>
+                <button class="button_red"><a href="{% url 'delete_pre_enrolled' list_pre_enrolled.id %}" class="delete-details">Delete</a></button>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+        <!-- Modal -->
+     <!--   <div class="modal" id="myModal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal()">&times;</span><br>
+              <h2>Instructor Details</h2><br>
+              <div id="modalContentContainer"></div>
+            </div>
+          </div>
+        
+          <script>
+            // JavaScript functions for the modal
+            function openModal(name, email, department) {
+              var modalContentContainer = document.getElementById('modalContentContainer');
+              modalContentContainer.innerHTML = '';  // Clear previous content
+              var contentParagraph = document.createElement('p');
+              contentParagraph.innerHTML = `<span>Name:</span> ${name}<br><span>Department:</span> ${department}<br><span>Email:</span> ${email}`;
+              modalContentContainer.appendChild(contentParagraph);
+              document.getElementById('myModal').style.display = 'flex';
+            }
+        
+            function closeModal() {
+              document.getElementById('myModal').style.display = 'none';
+            }
+        
+            // Attach click event listeners to buttons with class "view-details"
+            document.addEventListener('click', function(event) {
+              if (event.target.classList.contains('view-details')) {
+                var name = event.target.dataset.name;
+                var email= event.target.dataset.email;
+                var department = event.target.dataset.department;
+                openModal(name, email, department);
+              }
+            });
+          </script>-->
+        <!-- end for Modal -->
+  {% endblock %}

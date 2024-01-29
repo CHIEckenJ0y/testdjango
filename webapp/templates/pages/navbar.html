@@ -1,0 +1,102 @@
+{% load static %}
+    <!--Header Start-->
+    <header>
+      <section id="topbar" class="mb-2 mb-lg-0 mb-sm-0 d-none d-lg-flex align-items-center pt-2 pb-2 bg-primary text-white topbar-transparent">
+     <div class="container">
+       <div class="row">
+         <div class="col-lg-6   text-start">
+          <span class="px-3"><i class="bi bi-flag-fill"></i> <strong>Senior High School in San Nicholas III </strong></span>
+         </div>
+         <div class="col-md-6 text-end">
+              <a href="" class="me-4 text-reset" style="text-decoration: none;">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="" class="me-4 text-reset" style="text-decoration: none;">
+                <i class="bi bi-twitter"></i>
+            </a>
+            <a href="" class="me-4 text-reset" style="text-decoration: none;">
+                <i class="bi bi-google"></i>
+            </a>
+            <a href="" class="me-4 text-reset" style="text-decoration: none;">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="" class="me-4 text-reset" style="text-decoration: none;">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="" class="me-4 text-reset" style="text-decoration: none;">
+                <i class="bi bi-github"></i>
+            </a>
+        </div>
+       </div>
+     </div>
+   </section>
+     <!--Navbar Start-->
+     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+         <div class="container">
+             <a class="navbar-brand" href="{% url 'homePage' %}">
+              <img src="{% static 'images/SHS_LOGO.png' %}" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+             </a>
+             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                 aria-expanded="false" aria-label="Toggle navigation">
+                 <span class="bi bi-list"></span>
+             </button>
+             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                 <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                     <li class="nav-item">
+                         <a class="nav-link active" aria-current="page" href="{% url 'homePage' %}">Home</a>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" href="#courses">Courses</a>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" href="#about">About</a>
+                     </li>
+
+                     <li class="nav-item">
+                         <a class="nav-link" href="#contact">Contact us</a>
+                     </li>
+                 </ul>
+                 <ul class="navbar-nav mb-2 mb-lg-0 action-menu">
+                     <li class="nav-item">
+                         <a class="nav-link " href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                             <i class="bi bi-person "></i>
+                         </a>
+                     </li>
+                 </ul>
+
+          <!---=======MODAL======--->
+          <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" id="exampleModal1">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                  <h1 class="fw-bold mb-0 fs-2">Sign in</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+          
+                <div class="modal-body p-5 pt-0">
+                  <form class="">
+                    <div class="form-floating mb-3">
+                      <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
+                      <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
+                      <label for="floatingPassword">Password</label>
+                    </div>
+                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-success" type="submit">Sign in</button>
+                    <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
+                    
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!---=======MODAL======--->
+
+             </div>
+         </div>
+     </nav>
+     <!--Navbar End-->
+ </header>
+ <!--Header End-->

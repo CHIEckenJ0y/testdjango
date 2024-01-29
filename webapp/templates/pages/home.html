@@ -1,0 +1,265 @@
+{% extends 'pages/index.html' %}
+
+{% load static %}
+
+{% block content %}
+<main>
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="{% static 'images/SHS_LOGO.png' %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="500" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3"> Senior High School in San Nicholas III Bacoor City, Cavite</h1>
+        <p id="javademo" class="lead">Management Information System</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+           <!--- <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-primary btn-lg px-4 me-md-2">Dashboard</button>--->
+           <button type="button" class="btn btn-outline-primary btn-lg px-4 me-md-2"><a class="navbar-brand" href="{% url 'dashboard' %}">Dashboard</a></button>
+           
+          <!---=======MODAL======--->
+          <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" id="exampleModal">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                  <h1 class="fw-bold mb-0 fs-2">Sign up for free</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+          
+                <div class="modal-body p-5 pt-0">
+                  <form class="">
+                    <div class="form-floating mb-3">
+                      <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
+                      <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
+                      <label for="floatingPassword">Password</label>
+                    </div>
+                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-success" type="submit">Sign up</button>
+                    <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
+                    <hr class="my-4">
+                    <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
+                    <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
+                      <i class="bi bi-twitter" width="16" height="16"><use xlink:href="#twitter"/></i>
+                      Sign up with Twitter
+                    </button>
+                    <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
+                      <i class="bi bi-facebook" width="16" height="16"><use xlink:href="#facebook"/></i>
+                      Sign up with Facebook
+                    </button>
+                    <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
+                      <i class="bi bi-github" width="16" height="16"><use xlink:href="#github"/></i>
+                      Sign up with GitHub
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!---=======MODAL======--->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="courses">
+    <div class="container course pb-5 pt-5">
+        <h2 class="h1-responsive font-weight-bold text-center my-4">Courses</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card box">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img src="https://media.istockphoto.com/id/1640139644/photo/smiling-it-programmer-enjoys-at-work.jpg?s=2048x2048&w=is&k=20&c=fRlidRNktoscopQUQeXEHh_opNpbNw2g7kRp2HXDr90="
+                            class="img-fluid" />
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">BSCS</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the
+                            bulk of the card's content.</p>
+                        <a href="#!" class="btn btn-primary">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card box">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img src="https://media.istockphoto.com/id/1640139095/photo/coding-expert-works-on-multiple-monitors.jpg?s=612x612&w=0&k=20&c=RCwIaIxIRu3cBAO3t3KHVurn7UjskC0sgeu6xBfXcow="
+                            class="img-fluid" />
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">BSMT</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the
+                            bulk of the card's content.</p>
+                        <a href="#!" class="btn btn-primary">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card box">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img src="https://media.istockphoto.com/id/1640139100/photo/it-programmer-coding-in-office.jpg?s=2048x2048&w=is&k=20&c=PmkcTWhEBD8Wm1nSxeJJyKhYjSy_xStleKT7r69W0ww="
+                            class="img-fluid" />
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">BSIT</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the
+                            bulk of the card's content.</p>
+                        <a href="#!" class="btn btn-primary">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+       <!-- ======= About Section ======= -->
+       <section id="about" class="about mt-5">
+        <div class="container-fluid">
+            <h2 class="h1-responsive font-weight-bold text-center my-2">About</h2>
+
+            <div class="row  pt-5 pb-5">
+
+                <div class="col-lg-5 align-items-stretch video-box"
+                    style='background-image: url("static/images/bg_about_shs.png");'>
+                    <a href="https://youtu.be/VxemUE2UhhI" class="venobox play-btn mb-4"
+                        data-vbtype="video" data-autoplay="true"></a>
+                </div>
+
+                <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch">
+
+                    <div class="content">
+                        <h3><strong>History of SHS in San Nicholas III Bacoor City</strong></h3>
+                        <p class="lead" style="font-size: large;">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aiming to enhance the basic education system in the Philippines, 
+                            the Department of Education complied with the implementation of the K-12 program, 
+                            as mandated by Republic Act 10533 or the “Enhanced Basic Education Act of 2013”. 
+                            This law added two years to basic education and also strengthened the curriculum. 
+                            Now, twelve years of basic education is required from all public schools around the country. 
+                            Like other Division offices, the City Schools Division of Bacoor implemented the K-12 program. 
+                            This implementation in 2016 manifested in the creation of five stand alone Senior High Schools in Bacoor: 
+                            in Alima, Progressive, Dulong Bayan, Sineguelasan, and the biggest in the city, in San Nicholas III.<br>
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Senior High School in San Nicholas was established and opened last June 3, 2016. The School operated 
+                            temporarily in the buildings of City of Bacoor National High School Green Valley. Now, it has its own operating 
+                            location, and is in the process of improving on its facilities.
+
+                            
+                        </p>
+                       
+                        
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End About Section -->
+
+<section id="contact">
+  <div class="container mb-5">
+      <!--Section: Contact v.2-->
+      <section class="mb-4">
+
+          <!--Section heading-->
+          <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+          <!--Section description-->
+          <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate
+              to contact us directly. Our team will come back to you within
+              a matter of hours to help you.</p>
+
+          <div class="row">
+
+              <!--Grid column-->
+              <div class="col-md-6 mb-md-0 mb-5">
+                  <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+
+                      <!--Grid row-->
+                      <div class="row">
+
+                          <!--Grid column-->
+                          <div class="col-md-6">
+                              <div class="md-form mb-0">
+                                  <input type="text" id="name" name="name" class="form-control">
+                                  <label for="name" class="">Your name</label>
+                              </div>
+                          </div>
+                          <!--Grid column-->
+
+                          <!--Grid column-->
+                          <div class="col-md-6">
+                              <div class="md-form mb-0">
+                                  <input type="text" id="email" name="email" class="form-control">
+                                  <label for="email" class="">Your email</label>
+                              </div>
+                          </div>
+                          <!--Grid column-->
+
+                      </div>
+                      <!--Grid row-->
+
+                      <!--Grid row-->
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="md-form mb-0">
+                                  <input type="text" id="subject" name="subject" class="form-control">
+                                  <label for="subject" class="">Subject</label>
+                              </div>
+                          </div>
+                      </div>
+                      <!--Grid row-->
+
+                      <!--Grid row-->
+                      <div class="row">
+
+                          <!--Grid column-->
+                          <div class="col-md-12">
+
+                              <div class="md-form">
+                                  <textarea type="text" id="message" name="message" rows="2"
+                                      class="form-control md-textarea"></textarea>
+                                  <label for="message">Your message</label>
+                              </div>
+
+                          </div>
+                      </div>
+                      <!--Grid row-->
+
+                  </form>
+
+                  <div class="text-center text-md-left">
+                      <a class="btn btn-primary"
+                          onclick="document.getElementById('contact-form').submit();">Send</a>
+                  </div>
+                  <div class="status"></div>
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-md-6 text-center">
+                  <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18381.963043771466!2d120.9768235216704!3d14.408032035362412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d186ae1f0c37%3A0x3af6d92ee1c3c0ac!2sSHS%20in%20San%20Nicholas%20III%2C%20Bacoor%20City!5e0!3m2!1sen!2sph!4v1705897176997!5m2!1sen!2sph" width="800" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                      width="600" height="300px" style="border:0;" allowfullscreen="" loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+              <!--Grid column-->
+
+          </div>
+
+      </section>
+      <!--Section: Contact v.2-->
+  </div>
+</section>
+</main>
+{% endblock %}

@@ -1,0 +1,213 @@
+{% extends 'pages/dashboard.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+    .button-link1 {
+      width: 200px;
+      margin-top: 8px;
+      padding: 7px;
+      cursor: pointer;
+      border-radius: 10px;
+      background: transparent;
+      border: 1px solid #0d6efd;
+      float: right;
+    }
+    .button-link1:hover{
+      background: #0d6efd;
+      color: #fff;
+      transition: 0.5s;
+    }
+    .button-link2 {
+      width: 100%;
+      margin-top: 8px;
+      padding: 7px;
+      cursor: pointer;
+      border-radius: 10px;
+      background: transparent;
+      background: #0d6efd;
+      color: #fff;
+      float: right;
+    }
+    .button-link2:hover{
+      background: #0db5fd;
+      color: #fff;
+      transition: 0.5s;
+    }
+    form input{
+        border: 1px solid #0d6efd;
+        border-radius: 5px;
+        padding: 7px;
+        font-size: 14px;
+    }
+    .edit-details {
+    width: 100%;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 10px;
+    background: transparent;
+    color: #000000;
+  }
+  .edit-details:hover{
+    background: #0d6efd;
+    color: #fff;
+    transition: 0.5s;
+  }
+  .delete-details {
+    width: 100%;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 10px;
+    background: transparent;
+    color: #000000;
+  }
+  .delete-details:hover{
+    background: #BF3131;
+    color: #fff;
+    transition: 0.5s;
+  }
+  table .button_red{
+    border: 1px solid #BF3131;
+    
+  }
+  table .button_red:hover{
+    background: #BF3131;
+  }
+  
+  </style>
+<section class="attendance">
+    <div class="attendance-list">
+      <h1>List of Department</h1>
+      <button class="button-link1" onclick="openAddDepartmentModal()">Add Department</button>
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Department Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for list_department in department %}
+            <tr>
+              <td>{{list_department.name}}</td>
+              <td>
+                <button><a href="{% url 'edit_department' list_department.id %}" class="edit-details">Edit</a></button>
+                <button class="button_red"><a href="{% url 'delete_department' list_department.id %}" class="delete-details">Delete</a></button>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+
+        <!-- Add Department Modal -->
+        <div id="addDepartmentModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeAddDepartmentModal()">&times;</span>
+                <h2>Add Department</h2><br>
+                <form id="addDepartmentForm" method="post" action="{% url 'add_department' %}">
+                    {% csrf_token %}
+                    <label for="departmentName">Department Name:</label>
+                    <input type="text" id="departmentName" name="departmentName" required><br><br>
+                    <button class="button-link2" type="button" onclick="submitDepartmentForm()">Add Department</button>
+                </form>
+            </div>
+        </div>
+
+
+        
+          <script>
+
+            // JavaScript functions for add department modals
+            function openAddDepartmentModal() {
+                document.getElementById('addDepartmentModal').style.display = 'flex';
+            }
+
+            function closeAddDepartmentModal() {
+                document.getElementById('addDepartmentModal').style.display = 'none';
+            }
+            
+//Script function for add modal
+            //to check if the value is already exist
+            function isDepartmentExists(departmentName) {
+                const checkUrl = `/check_department_exists/?department_name=${encodeURIComponent(departmentName)}`;
+
+                return fetch(checkUrl, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    return data.exists;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    return false;
+                });
+            }
+            //continuation process
+            async function submitDepartmentForm() {
+            var form = document.getElementById('addDepartmentForm');
+            var formData = new FormData(form);
+            var departmentName = formData.get('departmentName');
+
+            // Check if the department name already exists
+            const exists = await isDepartmentExists(departmentName);
+
+            if (exists) {
+                Swal.fire({
+                    text: "Department already exists",
+                    icon: "error",
+                    confirmButtonColor: "#0d6efd",
+                });
+                return;  // Stop form submission
+            }
+
+            // Continue with form submission if the department doesn't exist
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire({
+                        text: "Department " + data.department_name + " added successfully",
+                        icon: "success",
+                        confirmButtonColor: "#0d6efd",
+                    }).then(() => {
+                        // Reload the page
+                        location.reload();
+                    });
+                    closeAddDepartmentModal();
+                } else {
+                    Swal.fire({
+                        text: "Error: " + data.error,
+                        icon: "error",
+                        confirmButtonColor: "#0d6efd",
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+//End script function for add modal
+
+
+
+          </script>
+        <!-- end for Modal -->
+  {% endblock %}
+  

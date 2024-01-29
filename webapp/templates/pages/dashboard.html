@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>SHS in San Nicholas III</title>
+      <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
+      <link rel="icon" type="images/x-icon" href="{% static 'images/SHS_LOGO.png' %}">
+   
+      <!-- Font Awesome Cdn Link -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </head>
+    <body>
+      <div class="container">
+        {% include 'pages/side_menu.html' %}
+        
+        <section class="main">
+          {% include 'pages/top_nav.html' %}
+          {% block content %}
+
+          {# list_student #}
+          {# list_instructor #}
+          {# list_courses #}
+          {# list_department #}
+
+          {% endblock %}
+
+
+        </section>
+        
+    
+    
+
+      </div>
+    
+    </body>
+    </html>

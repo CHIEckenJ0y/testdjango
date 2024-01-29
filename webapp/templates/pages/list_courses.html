@@ -1,0 +1,141 @@
+{% extends 'pages/dashboard.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+      .button-link1 {
+      width: 200px;
+      padding: 7px;
+      cursor: pointer;
+      border-radius: 10px;
+      background: white;
+      border: 1px solid #0d6efd;
+      float: right;
+      color: #000000;
+    }
+    .button-link1:hover{
+      background: #0d6efd;
+      color: #fff;
+      transition: 0.5s;
+    }
+    .edit-details {
+    width: 100%;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 10px;
+    background: transparent;
+    color: #000000;
+  }
+  .edit-details:hover{
+    background: #0d6efd;
+    color: #fff;
+    transition: 0.5s;
+  }
+    .delete-details {
+    width: 100%;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 10px;
+    background: transparent;
+    color: #000000;
+  }
+  .delete-details:hover{
+    background: #BF3131;
+    color: #fff;
+    transition: 0.5s;
+  }
+  table .button_red{
+    border: 1px solid #BF3131;
+    
+  }
+  table .button_red:hover{
+    background: #BF3131;
+  }
+</style>
+<section class="attendance">
+    <div class="attendance-list">
+      <h1>Offered Courses</h1>
+      <button style="float: right;"><a class="button-link1" href="{% url 'add_course' %}">Add Course</a></button>
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Course Code</th>
+            <th>Course name</th>
+            <th>Department</th>
+            <th>Instructor</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for list_courses in courses %}
+            <tr>
+              <td>{{ list_courses.course_code }}</td>
+              <td>{{ list_courses.course_name }}</td>
+              <td>{{ list_courses.department }}</td>
+              <td>{{ list_courses.instructor }}</td>
+              <td>
+                <button><a href="{% url 'edit_course' list_courses.id %}" class="edit-details">Edit</a></button>
+                <button class="button_red"><a href="{% url 'delete_course' list_courses.id %}" class="delete-details">Delete</a></button>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+
+        <!-- Add Department Modal -->
+        <div id="addDepartmentModal" class="modal">
+          <div class="modal-content">
+              <span class="close" onclick="closeAddDepartmentModal()">&times;</span>
+              <h2>Add Department</h2><br>
+              <form id="addDepartmentForm" method="post" action="{% url 'add_department' %}">
+                  {% csrf_token %}
+                  <label for="departmentName">Department Name:</label>
+                  <input type="text" id="departmentName" name="departmentName" required><br><br>
+                  <button class="button-link2" type="button" onclick="submitDepartmentForm()">Add Department</button>
+              </form>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal()">&times;</span><br>
+              <h2>Student Details</h2><br>
+              <div id="modalContentContainer"></div>
+            </div>
+          </div>
+        
+          <script>
+            // JavaScript functions for the modal
+            function openModal(student, course, year) {
+              var modalContentContainer = document.getElementById('modalContentContainer');
+              modalContentContainer.innerHTML = '';  // Clear previous content
+              var contentParagraph = document.createElement('p');
+              contentParagraph.innerHTML = `<span>Student:</span> ${student}<br><span>Year Level:</span> ${year}<br><span>Course:</span> ${course}`;
+              modalContentContainer.appendChild(contentParagraph);
+              document.getElementById('myModal').style.display = 'flex';
+            }
+        
+            function closeModal() {
+              document.getElementById('myModal').style.display = 'none';
+            }
+        
+            // Attach click event listeners to buttons with class "view-details"
+            document.addEventListener('click', function(event) {
+              if (event.target.classList.contains('view-details')) {
+                var student = event.target.dataset.student;
+                var course = event.target.dataset.course;
+                var year = event.target.dataset.year;
+                openModal(student, course, year);
+              }
+            });
+          </script>
+        <!-- end for Modal -->
+  {% endblock %}
+  

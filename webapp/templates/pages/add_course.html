@@ -1,0 +1,152 @@
+{% extends 'pages/dashboard.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+    .button-link1 {
+      width: 200px;
+      margin-top: 8px;
+      padding: 7px;
+      cursor: pointer;
+      border-radius: 10px;
+      background: transparent;
+      border: 1px solid #0d6efd;
+      float: right;
+    }
+    .button-link1:hover{
+      background: #0d6efd;
+      color: #fff;
+      transition: 0.5s;
+    }
+    .button-link2 {
+      width: 100%;
+      margin-top: 8px;
+      padding: 7px;
+      cursor: pointer;
+      border-radius: 10px;
+      background: transparent;
+      background: #0d6efd;
+      color: #fff;
+      float: right;
+    }
+    .button-link2:hover{
+        background: #0d6dfda2;
+      color: #fff;
+      transition: 0.5s;
+    }
+    form input{
+        border: 1px solid #0d6efd;
+        border-radius: 5px;
+        padding: 7px;
+        font-size: 14px;
+    }
+    .edit-details {
+    width: 100%;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 10px;
+    background: transparent;
+    color: #000000;
+  }
+  .edit-details:hover{
+    background: #0d6efd;
+    color: #fff;
+    transition: 0.5s;
+  }
+  .delete-details {
+    width: 100%;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 10px;
+    background: transparent;
+    color: #000000;
+  }
+  .delete-details:hover{
+    background: #BF3131;
+    color: #fff;
+    transition: 0.5s;
+  }
+  table .button_red{
+    border: 1px solid #BF3131;
+    
+  }
+  table .button_red:hover{
+    background: #BF3131;
+  }
+  form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    form input,
+    form select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #0d6efd;
+        border-radius: 5px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #0d6efd;
+        border-radius: 5px;
+        font-size: 14px;
+        box-sizing: border-box;
+        resize: vertical;
+    }
+  .attendance-list1{
+    height: 65vh;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+  }
+  .cancel {
+    width: 100%;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 10px;
+    background: #BF3131;
+    color: #fff;
+    
+    }
+    .cancel:hover{
+      background: #bf3131af;
+      color: #fff;
+      transition: 0.5s;
+    }
+    .button-cancel {
+      width: 100%;
+      margin-top: 8px;
+      cursor: pointer;
+      border-radius: 10px;
+      background: white;
+      color: #fff;
+      float: right;
+    }
+  </style>
+    <section class="attendance">
+        <div class="attendance-list1">
+            <h1>Add Course</h1>
+            <br>
+
+            <form method="post" action="{% url 'add_course' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="button-link2" type="submit">Add Course</button>
+                <button class="button-cancel"><a href="{% url 'list_courses' %}" class="cancel">Cancel</a></button>
+            </form>
+        </div>
+    </section>
+
+
+  {% endblock %}
+  

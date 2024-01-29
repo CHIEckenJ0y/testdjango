@@ -1,0 +1,93 @@
+{% extends 'pages/dashboard.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+    .button-link1 {
+      width: 100%;
+      margin-top: 8px;
+      padding: 7px;
+      cursor: pointer;
+      border-radius: 10px;
+      background: #0d6efd;
+      color: #fff;
+      font-size: 15px;
+    }
+    .button-link1:hover{
+      background: #0d6dfdc0;
+      color: #fff;
+      transition: 0.5s;
+    }
+    .button-link2 {
+      width: 100%;
+      margin-top: 8px;
+      padding: 7px;
+      cursor: pointer;
+      border-radius: 10px;
+      background: transparent;
+      background: #0d6efd;
+      color: #fff;
+      float: right;
+    }
+    .button-link2:hover{
+      background: #0db5fd;
+      color: #fff;
+      transition: 0.5s;
+    }
+    form input{
+        border: 1px solid #0d6efd;
+        border-radius: 5px;
+        padding: 7px;
+        font-size: 14px;
+    }
+    .delete-details {
+    width: 100%;
+    margin-top: 7px;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 10px;
+    
+    color: #000000;
+    }
+    
+    .delete-details:hover{
+      background: #BF3131;
+      color: #fff;
+      transition: 0.5s;
+    }
+    .delete-details1 {
+    width: 100%;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 10px;
+    
+    color: #000000;
+    }
+    .delete-details1:hover{
+      background: #BF3131;
+      color: #fff;
+      transition: 0.5s;
+    }
+    .attendance{
+     width: 500px;
+     
+    }
+  </style>
+    <section class="attendance">
+        <div class="attendance-list">
+            <h1>Delete Enrolled student</h1>
+            <p>Are you sure you want to delete student '{{ enrolled_student.student }}'?</p>
+            <br>
+
+            <form method="post">
+                {% csrf_token %}
+                <button class="button-link2" type="submit">Delete Course</button>
+                <button class="delete-details"><a href="{% url 'list_student' %}" class="delete-details1">Cancel</a></button>
+            </form>
+        </div>
+    </section>
+
+
+  {% endblock %}
+  
